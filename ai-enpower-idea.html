@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息图：AI革命始于内部（集成Gemini）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #F5F5F5;
+            color: #242424;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 400px;
+        }
+        .flow-arrow {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 1rem);
+            transform: translateY(-50%);
+            color: #009FFD;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .pulse-orb {
+            box-shadow: 0 0 0 0 rgba(0, 159, 253, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 159, 253, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 20px rgba(0, 159, 253, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 159, 253, 0);
+            }
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #009FFD;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <header class="text-center py-16">
+            <h1 class="text-4xl md:text-6xl font-black" style="color: #004AAD;">AI革命始于内部</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">为什么改造组织核心远比为产品添加AI功能重要得多。一个新的战略范式。</p>
+        </header>
+        
+        <main>
+            <section id="core-thesis" class="py-12">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden md:flex">
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h2 class="text-3xl font-bold" style="color: #004AAD;">根本性转变：你的AI精力应该聚焦何处</h2>
+                        <p class="mt-4 text-gray-600">市场痴迷于“产品AI”——添加可见的AI功能。然而，来自硅谷顶尖公司的洞察揭示了不同的故事。真正的竞争优势在于“组织AI”——为深度AI集成而重塑公司的内部操作系统。这才是构建真正创新产品的基础。</p>
+                        <div class="mt-6 text-lg">
+                            <div class="flex items-center mt-4">
+                                <span class="text-3xl mr-4" style="color: #004AAD;">■</span>
+                                <div>
+                                    <h3 class="font-bold">组织AI (80% 焦点)</h3>
+                                    <p class="text-sm text-gray-500">构建持久的、可复利的优势。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mt-4">
+                                <span class="text-3xl mr-4" style="color: #A3D9FF;">■</span>
+                                <div>
+                                    <h3 class="font-bold">产品AI (20% 焦点)</h3>
+                                    <p class="text-sm text-gray-500">一个可见但滞后的内部成熟度指标。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8 flex items-center justify-center">
+                        <div class="chart-container h-64 w-64 md:h-80 md:w-80">
+                            <canvas id="focusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="principles" class="py-16">
+                <h2 class="text-3xl font-bold text-center mb-12">“为什么”：组织AI战略的三大支柱</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="text-5xl mb-4" style="color: #009FFD;">📈</div>
+                        <h3 class="font-bold text-xl mb-2">杠杆效应</h3>
+                        <p class="text-gray-600 mb-4">一个AI原生组织看到的不是线性增长，而是指数级增长。内部AI整合扮演着力量倍增器的角色，放大了整个组织的智能和产出能力。</p>
+                        <div class="chart-container h-56" style="max-width: 400px;">
+                            <canvas id="leverageChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                         <div class="text-5xl mb-4" style="color: #009FFD;">⏱️</div>
+                        <h3 class="font-bold text-xl mb-2">生产力革命</h3>
+                        <p class="text-gray-600 mb-4">真正的革命不只是更快地完成任务，而是几乎消除了返工和修正等低价值工作，将人类才能解放出来，用于高阶战略和创造。</p>
+                        <div class="chart-container h-56" style="max-width: 400px;">
+                            <canvas id="productivityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="text-5xl mb-4" style="color: #009FFD;">🏆</div>
+                        <h3 class="font-bold text-xl mb-2">硅谷的证明</h3>
+                        <p class="text-gray-600 mb-4">最成功的AI独角兽都有一个共同的秘密：他们是组织优先的。他们市场领先的产品，是其深度整合的AI原生内部系统的直接结果。</p>
+                        <ul class="text-left mt-6 space-y-2">
+                           <li class="flex items-start"><span class="font-bold text-lg mr-2" style="color: #004AAD;">1.</span> 深度整合的、专有的知识库。</li>
+                           <li class="flex items-start"><span class="font-bold text-lg mr-2" style="color: #004AAD;">2.</span> 针对所有角色的标准化、AI友好的工作流。</li>
+                           <li class="flex items-start"><span class="font-bold text-lg mr-2" style="color: #004AAD;">3.</span> 人机协作文化，而非简单的任务委派。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blueprint" class="py-16">
+                <h2 class="text-3xl font-bold text-center mb-4">“如何做”：转型的五大支柱蓝图</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">这不仅是理论，更是构建AI原生组织的具体分步工程计划。</p>
+                <div class="hidden md:grid grid-cols-5 gap-8 items-start">
+                    <div class="col-span-1 text-center relative px-2">
+                        <div class="bg-white p-4 rounded-lg shadow-md border-t-4" style="border-color: #009FFD;">
+                            <div class="text-3xl mb-2">1️⃣</div>
+                            <h4 class="font-bold">CLI原生管理</h4>
+                            <p class="text-xs text-gray-500 mt-1">将所有工作流（产品、设计、测试）统一到单一的、机器可读的环境中（如Git）。</p>
+                        </div>
+                        <div class="flow-arrow hidden md:block"></div>
+                    </div>
+                    <div class="col-span-1 text-center relative px-2">
+                        <div class="bg-white p-4 rounded-lg shadow-md border-t-4" style="border-color: #009FFD;">
+                            <div class="text-3xl mb-2">2️⃣</div>
+                            <h4 class="font-bold">资源重置</h4>
+                            <p class="text-xs text-gray-500 mt-1">“破釜沉舟”。砍掉旧的SaaS工具，将节省的资金再投资于强大的LLM API。</p>
+                        </div>
+                         <div class="flow-arrow hidden md:block"></div>
+                    </div>
+                    <div class="col-span-1 text-center relative px-2">
+                        <div class="bg-white p-4 rounded-lg shadow-md border-t-4" style="border-color: #009FFD;">
+                            <div class="text-3xl mb-2">3️⃣</div>
+                            <h4 class="font-bold">知识架构</h4>
+                            <p class="text-xs text-gray-500 mt-1">将所有公司规则和指南结构化为LLM友好的格式（如MD, JSON）。</p>
+                        </div>
+                         <div class="flow-arrow hidden md:block"></div>
+                    </div>
+                    <div class="col-span-1 text-center relative px-2">
+                        <div class="bg-white p-4 rounded-lg shadow-md border-t-4" style="border-color: #009FFD;">
+                            <div class="text-3xl mb-2">4️⃣</div>
+                            <h4 class="font-bold">智能系统化</h4>
+                            <p class="text-xs text-gray-500 mt-1">将提示词工程工业化，以确保一致的、高质量的AI输出。</p>
+                        </div>
+                         <div class="flow-arrow hidden md:block"></div>
+                    </div>
+                    <div class="col-span-1 text-center relative px-2">
+                         <div class="bg-white p-4 rounded-lg shadow-md border-t-4" style="border-color: #009FFD;">
+                            <div class="text-3xl mb-2">5️⃣</div>
+                            <h4 class="font-bold">原型驱动开发</h4>
+                            <p class="text-xs text-gray-500 mt-1">利用该系统，在几分钟内从需求规格生成可运行的原型。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:hidden space-y-8">
+                     <div class="text-center"><div class="bg-white p-4 rounded-lg shadow-md border-l-4" style="border-color: #009FFD;"><h4 class="font-bold">1. CLI原生管理</h4><p class="text-sm text-gray-500 mt-1">将所有工作流统一到机器可读的环境中。</p></div></div>
+                     <div class="text-center text-2xl font-bold" style="color: #009FFD;">↓</div>
+                     <div class="text-center"><div class="bg-white p-4 rounded-lg shadow-md border-l-4" style="border-color: #009FFD;"><h4 class="font-bold">2. 资源重置</h4><p class="text-sm text-gray-500 mt-1">砍掉旧工具，再投资于核心AI。</p></div></div>
+                      <div class="text-center text-2xl font-bold" style="color: #009FFD;">↓</div>
+                     <div class="text-center"><div class="bg-white p-4 rounded-lg shadow-md border-l-4" style="border-color: #009FFD;"><h4 class="font-bold">3. 知识架构</h4><p class="text-sm text-gray-500 mt-1">构建结构化的、LLM友好的知识库。</p></div></div>
+                      <div class="text-center text-2xl font-bold" style="color: #009FFD;">↓</div>
+                     <div class="text-center"><div class="bg-white p-4 rounded-lg shadow-md border-l-4" style="border-color: #009FFD;"><h4 class="font-bold">4. 智能系统化</h4><p class="text-sm text-gray-500 mt-1">将提示词工程工业化以控制质量。</p></div></div>
+                     <div class="text-center text-2xl font-bold" style="color: #009FFD;">↓</div>
+                     <div class="text-center"><div class="bg-white p-4 rounded-lg shadow-md border-l-4" style="border-color: #009FFD;"><h4 class="font-bold">5. 原型驱动开发</h4><p class="text-sm text-gray-500 mt-1">在几分钟内从需求生成原型。</p></div></div>
+                </div>
+            </section>
+            
+            <section id="result" class="py-16 bg-white rounded-2xl shadow-xl my-16">
+                 <h2 class="text-3xl font-bold text-center mb-4">终极回报</h2>
+                 <p class="text-center text-xl text-gray-600 mb-12">一个“压倒性的智能伙伴”</p>
+                 <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="relative">
+                        <div class="w-48 h-48 rounded-full flex items-center justify-center text-6xl pulse-orb" style="background: radial-gradient(circle, #009FFD, #004AAD);">
+                           🧠
+                        </div>
+                    </div>
+                    <div class="max-w-md text-center md:text-left">
+                        <p class="mb-4 text-gray-700">这不只是一个更好的聊天机器人。它是一个对你的组织有深度情境感知的伙伴。它了解你的品牌声音、编码标准、项目历史和战略目标。它是知识复利和爆炸性增长的引擎。</p>
+                        <ul class="space-y-2">
+                           <li class="flex items-center justify-center md:justify-start"><span class="text-green-500 mr-2">✓</span> 了解内部规则和规范</li>
+                           <li class="flex items-center justify-center md:justify-start"><span class="text-green-500 mr-2">✓</span> 精通品牌声音和风格</li>
+                           <li class="flex items-center justify-center md:justify-start"><span class="text-green-500 mr-2">✓</span> 从历史数据中学习</li>
+                           <li class="flex items-center justify-center md:justify-start"><span class="text-green-500 mr-2">✓</span> 实现即时原型制作</li>
+                        </ul>
+                    </div>
+                 </div>
+            </section>
+            
+            <!-- Gemini API Section -->
+            <section id="gemini-partner" class="py-16">
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-center mb-4" style="color: #004AAD;">与你的AI战略伙伴对话</h2>
+                    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">输入你团队的目标或挑战，体验AI如何成为你的“智能伙伴”，为你生成初步行动方案。例如：“如何将我们的QA流程提速50%？”</p>
+                    
+                    <div class="max-w-2xl mx-auto">
+                        <textarea id="userInput" class="w-full p-4 border border-gray-300 rounded-lg shadow-inner focus:ring-2 focus:ring-blue-400 focus:outline-none" rows="4" placeholder="在这里输入你的挑战或目标..."></textarea>
+                        <button id="generateButton" class="mt-4 w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center text-lg">
+                            ✨ 生成行动方案
+                        </button>
+                    </div>
+
+                    <div id="geminiResult" class="mt-8 max-w-3xl mx-auto hidden">
+                        <div id="loaderContainer" class="flex flex-col items-center justify-center text-center">
+                            <div class="loader"></div>
+                            <p class="mt-4 text-gray-600">AI战略伙伴正在思考中，请稍候...</p>
+                        </div>
+                        <div id="resultContent" class="p-6 bg-gray-50 rounded-lg border border-gray-200 prose max-w-none"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="paradigm-shift" class="py-16">
+                <h2 class="text-3xl font-bold text-center mb-12">新的开发范式：从数周到数分钟</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="font-bold text-xl text-center mb-4 text-red-600">传统工作流</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">第1-2天:</span><div class="flex-1 bg-red-100 p-2 rounded">产品经理写抽象的需求文档</div></div>
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">第3天:</span><div class="flex-1 bg-red-100 p-2 rounded">评审会议，产生误解</div></div>
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">第4-10天:</span><div class="flex-1 bg-red-100 p-2 rounded">工程师解读并构建v1</div></div>
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">第11天:</span><div class="flex-1 bg-red-100 p-2 rounded">演示，反馈，重大修改</div></div>
+                             <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">第12天+:</span><div class="flex-1 bg-red-100 p-2 rounded">返工循环开始...</div></div>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="font-bold text-xl text-center mb-4 text-green-600">AI驱动工作流</h3>
+                         <div class="space-y-3">
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">0-5分钟:</span><div class="flex-1 bg-green-100 p-2 rounded">产品经理在CLI中写需求</div></div>
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">5-10分钟:</span><div class="flex-1 bg-green-100 p-2 rounded">AI生成可运行的原型</div></div>
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">10-30分钟:</span><div class="flex-1 bg-green-100 p-2 rounded">团队评审可触摸的原型</div></div>
+                            <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold">30分钟+:</span><div class="flex-1 bg-green-100 p-2 rounded">基于有效代码开始迭代</div></div>
+                             <div class="flex items-center"><span class="w-24 text-right mr-4 font-bold text-transparent">30分钟+:</span><div class="flex-1 bg-green-600 text-white font-bold p-2 rounded text-center">周期压缩 >99%</div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center py-12 border-t mt-16">
+            <h3 class="text-2xl font-bold mb-4">前方的道路既是挑战，也是选择</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto">这一转型需要强大的领导力、对短期混乱的容忍，以及打破旧有孤岛的决心。拥抱这一挑战的公司将定义下一个创新时代。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const brilliantBlues = {
+                primary: '#004AAD',
+                accent: '#009FFD',
+                lightAccent: '#A3D9FF',
+                dark: '#242424',
+                light: '#F5F5F5'
+            };
+
+            const wrapLabel = (str, maxWidth = 16) => {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const lines = [];
+                let currentLine = '';
+                for (let i = 0; i < str.length; i++) {
+                    currentLine += str[i];
+                    if (currentLine.length >= maxWidth) {
+                        lines.push(currentLine);
+                        currentLine = '';
+                    }
+                }
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join('');
+                }
+                return label;
+            };
+
+            const sharedChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                     x: { ticks: { font: { size: 10 } } },
+                     y: { ticks: { font: { size: 10 } } }
+                }
+            };
+            
+            new Chart(document.getElementById('focusChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['组织AI', '产品AI'],
+                    datasets: [{
+                        data: [80, 20],
+                        backgroundColor: [brilliantBlues.primary, brilliantBlues.lightAccent],
+                        borderColor: brilliantBlues.light,
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('leverageChart'), {
+                type: 'line',
+                data: {
+                    labels: ['第一年', '第二年', '第三年', '第四年', '第五年'],
+                    datasets: [
+                    {
+                        label: '仅产品AI',
+                        data: [10, 20, 30, 40, 50],
+                        borderColor: brilliantBlues.lightAccent,
+                        tension: 0.1,
+                        borderDash: [5, 5]
+                    },
+                    {
+                        label: '组织AI',
+                        data: [10, 25, 60, 150, 400],
+                        borderColor: brilliantBlues.primary,
+                        backgroundColor: 'rgba(0, 74, 173, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { ...sharedChartOptions, plugins: { ...sharedChartOptions.plugins, legend: { display: true, position: 'bottom', labels: { boxWidth: 12, font: {size: 10} } } } }
+            });
+            
+            new Chart(document.getElementById('productivityChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['传统组织', 'AI原生组织'],
+                    datasets: [{
+                        label: '高价值工作',
+                        data: [60, 90],
+                        backgroundColor: brilliantBlues.primary,
+                    }, {
+                        label: '返工与低价值任务',
+                        data: [40, 10],
+                        backgroundColor: brilliantBlues.lightAccent,
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    scales: {
+                        x: { stacked: true, ticks: { callback: function(value) { return wrapLabel(this.getLabelForValue(value)) } } },
+                        y: { stacked: true, beginAtZero: true, max: 100 }
+                    },
+                    plugins: { ...sharedChartOptions.plugins, legend: { display: true, position: 'bottom', labels: { boxWidth: 12, font: {size: 10} } } }
+                }
+            });
+
+            // Gemini API Integration
+            const generateButton = document.getElementById('generateButton');
+            const userInput = document.getElementById('userInput');
+            const geminiResultDiv = document.getElementById('geminiResult');
+            const loaderContainer = document.getElementById('loaderContainer');
+            const resultContent = document.getElementById('resultContent');
+
+            generateButton.addEventListener('click', async () => {
+                const promptText = userInput.value;
+                if (!promptText.trim()) {
+                    resultContent.innerHTML = '<p class="text-red-500">请输入你的挑战或目标。</p>';
+                    geminiResultDiv.classList.remove('hidden');
+                    loaderContainer.classList.add('hidden');
+                    return;
+                }
+
+                geminiResultDiv.classList.remove('hidden');
+                loaderContainer.style.display = 'flex';
+                resultContent.innerHTML = '';
+
+                const systemPrompt = `你是一位专注于组织转型的AI战略专家。你的任务是扮演一个“压倒性的智能伙伴”，为技术团队提供指导。你深刻理解构建AI原生组织的五大支柱：1. CLI原生管理，2. 资源重置，3. 知识架构，4. 智能系统化，5. 原型驱动开发。
+
+一位团队成员提出了以下目标/挑战：
+---
+${promptText}
+---
+
+基于此目标，请提供一份简洁、可操作、并鼓舞人心的初步行动方案。方案应体现组织AI的原则。请用清晰、易于理解的要点来组织你的回答，使用Markdown格式。用一个自信、鼓励的开场白开始。回答必须使用中文。`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: systemPrompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API 请求失败，状态码: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    let text = '';
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        text = result.candidates[0].content.parts[0].text;
+                    } else {
+                        throw new Error("未能从API获取有效回复。");
+                    }
+                    
+                    resultContent.innerHTML = parseMarkdown(text);
+
+                } catch (error) {
+                    console.error("Gemini API Error:", error);
+                    resultContent.innerHTML = `<p class="text-red-500">抱歉，与AI战略伙伴连接时发生错误。请稍后再试。</p><p class="text-xs text-gray-500 mt-2">${error.message}</p>`;
+                } finally {
+                    loaderContainer.style.display = 'none';
+                }
+            });
+            
+            function parseMarkdown(text) {
+                return text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')     
+                    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold mt-4 mb-2">$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold mt-6 mb-3">$1</h2>')
+                    .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mt-8 mb-4">$1</h1>')
+                    .replace(/^\* (.*$)/gim, '<li class="ml-4 mb-1">$1</li>')
+                    .replace(/^\s*\d+\. (.*$)/gim, '<li class="ml-4 mb-1">$1</li>')
+                    .replace(/<\/li><li/g, '</li></ul><ul class="list-disc list-inside space-y-1"><li') // Fix lists
+                    .replace(/<li/g, '<ul class="list-disc list-inside space-y-1"><li')
+                    .replace(/<\/li>$/, '</li></ul>')
+                    .replace(/\n/g, '<br>');
+            }
+        });
+    </script>
+</body>
+</html>
